@@ -1,0 +1,9 @@
+/* https://coolors.co/ffa9e7-ff84e8-7f2ccb-414361-2a2d43 */
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+}
