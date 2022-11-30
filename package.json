@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "tsc && vite build && gh-pages -d dist"
+    "deploy": "tsc && vite build && rm -rf node_modules/.cache/gh-pages/ && gh-pages -d dist"
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
