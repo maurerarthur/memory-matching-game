@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Card, FlexContainer, Typography } from '../'
+import { Grid, Card, FlexContainer, Typography, Button } from '../'
 
 interface ICard {
   id: number
@@ -29,7 +29,7 @@ export const Game: React.FC = () => {
       Array(GRID_SIZE).fill({})
       .map((_, index) => {
         const pairIndex: number =
-          (index + 1) > HALF_GRID_SIZE ? (index - HALF_GRID_SIZE) : index
+          index < HALF_GRID_SIZE ? index : (index - HALF_GRID_SIZE)
 
         return {
           id: pairIndex,
@@ -38,6 +38,7 @@ export const Game: React.FC = () => {
           isMatched: false
         }
       })
+      .sort(() => 0.5 - Math.random())
 
     setGrid(initialGrid)
   }, [])
@@ -81,12 +82,24 @@ export const Game: React.FC = () => {
       flexDirection='column'
       alignItems='center'
     >
-      <Typography
-        color='pink'
-        size='24'
+      <FlexContainer
+        style={{ width: '100%' }}
+        flexDirection='row'
+        justifyContent='spaceEvenly'
       >
-        Total moves: {moves}
-      </Typography>
+        <Typography
+          color='pink'
+          size='24'
+        >
+          Total moves: {moves}
+        </Typography>
+        <Typography
+          color='pink'
+          size='24'
+        >
+          Pairs matched: {matchedCardsQuantity / 2}/{HALF_GRID_SIZE}
+        </Typography>
+      </FlexContainer>
       <Grid>
         {grid.map((card, index) => (
           <Card
@@ -101,12 +114,22 @@ export const Game: React.FC = () => {
         ))}
       </Grid>
       {(matchedCardsQuantity == GRID_SIZE) && (
-        <Typography
-          color='pink'
-          size='24'
+        <FlexContainer
+          flexDirection='column'
+          alignItems='center'
         >
-          Congratulations! You've won the game!
-        </Typography>
+          <Typography
+            color='pink'
+            size='24'
+          >
+            Congratulations! You've won the game!
+          </Typography>
+          <Button
+            onClick={() => location.reload()}
+          >
+            Play again!
+          </Button>
+        </FlexContainer>
       )}
     </FlexContainer>
   )

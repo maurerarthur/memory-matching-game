@@ -20,6 +20,9 @@ export const FlexContainer = styled('div', {
       },
       flexEnd: {
         justifyContent: 'flex-end'
+      },
+      spaceEvenly: {
+        justifyContent: 'space-evenly'
       }
     },
     alignItems: {
